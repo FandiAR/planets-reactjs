@@ -1,5 +1,5 @@
 import ListPage from 'pages';
-// import DetailPage from 'pages/whislist';
+import WishListPage from 'pages/wishlist';
 // import NotFoundPage from 'pages/not-found';
 
 export const MainRoutes = [
@@ -8,10 +8,10 @@ export const MainRoutes = [
     exact: true,
     component: ListPage,
   },
-  // {
-  //   path: '/whislist',
-  //   component: DetailPage,
-  // },
+  {
+    path: '/wishlist',
+    component: WishListPage,
+  },
   // {
   //   path: '*',
   //   component: NotFoundPage,

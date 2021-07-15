@@ -41,7 +41,7 @@ const Header = () => {
                     </NavLink>
                 </span>
                 <span>
-                    <NavLink to="/whislist">
+                    <NavLink to="/wishlist">
                         List of Whislist
                     </NavLink>
                 </span>
