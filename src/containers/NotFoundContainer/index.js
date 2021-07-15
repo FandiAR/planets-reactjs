@@ -206,8 +206,8 @@ const NotFoundContainer = ({ history }) => (
             <div className="number">4</div>
         </div>
 
-        <div className="text">Oops. You're lost. Back to home if you dare.</div>
-        <button type="button" className="button" onClick={() => history.push('/')}>I'm dare :-(</button>
+        <div className="text">Oops. You are lost. Back to home if you dare.</div>
+        <button type="button" className="button" onClick={() => history.push('/')}>I am dare :-(</button>
     </StyledNotFound>
 );
 export default NotFoundContainer;

@@ -34,8 +34,8 @@ const Pagination = ({ perPage, totalWhislist, paginate }) => {
     return (
         <StyledPagination>
             {
-                pageNumbers.map((number, index) => (
-                    <p key={number} onClick={() => paginate(number)}>
+                pageNumbers.map((number) => (
+                    <p role="presentation" key={number} onClick={() => paginate(number)}>
                         {number}
                     </p>
                 ))
