@@ -1,70 +1,230 @@
-# Getting Started with Create React App
+<h1 align="center">Planets ReactJs</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple animated web app written with universal JavaScript, bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Directory Structure](#directory-structure)
+- [How to run](#how-to-run)
+- [Application Stack](#application-stack)
+- [App Flow Based on Files and Directories](#app-flow-based-on-files-and-directories)
+- [Importing Reusable Components](#importing-reusable-components)
+- [Registering New Components to Route](#registering-new-components-to-route)
+- [Call Containers from Pages](#call-containers-from-pages)
+- [Add New Pages](#add-new-pages)
+- [Add New Axios Method in apiClientjs](#add-new-axios-method-in-apiClientjs)
+- [Add New Global Function in commonjs](#add-new-global-function-in-commonjs)
+- [Add New apiClient Consumer in servicesjs](#add-new-apiClient-consumer-in-servicesjs)
+- [Hot Reload](#hot-reload)
+- [Live Demo](https://planets-reactjs.vercel.app/)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
+1. Responsive page
+2. Animated loader when load data
+3. Modern animated cards
+4. Animated button *Add to Wishlist*
+5. Pagination
+6. Animated page not found component
+7. Simple and elegant snackbar
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Directory Structure
 
-### `npm test`
+```
+planets-reactjs/
+  README.md
+  node_modules/
+  package.json
+  public/
+    index.html
+    favicon.ico
+  src/
+    assets/
+        images/
+    components/
+        Button/
+        Card/
+        Header/
+        Layout/
+        Loader/
+        PageTitle/
+        Pagination/
+        Snackbar/
+    containers/
+        ListContainer/
+        NotFoundContainer/
+        WishlistContainer/
+    navigation/
+        BrowserHistory.js
+        RenderPath.js
+        Routes.js
+    pages/
+        index.js
+        not-found.js
+        wishlist.js
+    utils/
+        apiClient.js
+        common.js
+        reducer.js
+        services.js
+        store.js
+    App.js
+    App.test.js
+    index.js
+    logo.svg
+    .dockerignore
+    .eslintrc
+    .gitignore
+    Dockerfile
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. assets => Contains global assets such as images, etc.
+2. components => Contains reusable global components.
+3. containers => Contains containers of components.
+4. navigation => Contains of cusotm routes workaround.
+5. pages => Entry door of each pages.
+6. utils => Contains reusable self made library, functions, or and services.
 
-### `npm run build`
+## How to run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Using terminal
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`git@github.com:FandiAR/planets-reactjs.git && cd planets-reactjs && npm i && npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Using docker
 
-### `npm run eject`
+`docker build -t planets-reactjs:dev . && docker run -d -p 3000:3000 planets-reactjs:dev`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+hit our application in a browser at http://localhost:3000/
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Application Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. [ReactJs](https://reactjs.org/) A JavaScript library for building user interfaces.
+2. [Axios](https://www.npmjs.com/package/axios) Promise based HTTP client for the browser and node.js.
+3. [Eslint](https://eslint.org/) JavaScript codes linter.
+4. [react-helmet](https://www.npmjs.com/package/react-helmet) React component will manage all of your changes to the document head.
+5. [Docker](https://www.docker.com/) Accelerate how you build, share and run modern applications.
+6. [styled-components](https://styled-components.com/) Use the best bits of ES6 and CSS to style your apps without stress.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## App Flow Based on Files and Directories
 
-## Learn More
+src/index.js => src/App.js => pages => containers.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Importing Reusable Components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+For example:
 
-### Code Splitting
+```
+    import PageTitle from 'components/PageTitle';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    const ComponentsCaller = (props) => {
+        const { all props here } = props;
 
-### Analyzing the Bundle Size
+        return (
+            <PageTitle title="Web Title For This Page">
+                <Another Html />
+            </PageTitle>
+        );
+    };
+    export default ComponentsCaller;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Registering New Components to Route
 
-### Making a Progressive Web App
+go to src/navigation/Routes.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+    import NewPage from 'pages/new-page';
 
-### Advanced Configuration
+    export const MainRoutes = [
+        {
+            path: '/path-to-new-page',
+            component: NewPage;
+        },
+    ];
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Call Containers from Pages
 
-### Deployment
+```
+    import PageTitle from 'components/PageTitle';
+    import NewContainer from 'containers/NewContainer';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    const NewPage = ({ history }) => {
+        return (
+            <PageTitle title="New Page">
+                <NewContainer history={history} />
+            </PageTitle>
+        );
+    };
+    export default NewPage;
+```
 
-### `npm run build` fails to minify
+## Add New Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+go to src/pages
+
+create new file, exmple `page.js`
+
+
+## Add New Axios Method in apiClientjs
+
+open file src/utils/apiClient.js
+
+for example, we need to add method 'post'
+
+```
+    case 'post':
+        return axios
+            .post(baseUrl + url, body, { headers, params })
+            .catch((error) => { throw error; })
+            });
+```
+
+## Add New Global Function in commonjs
+
+open file src/utils/common.js
+
+```
+    export const newCommonFunction = (params) => {
+        // do something here
+    };
+```
+
+## Add New apiClient Consumer in servicesjs
+
+open file src/utils/services.js
+
+```
+    import apiClient from './apiClient';
+    export const getNewData = async (param) => {
+        const result = await ApiClient('get', 'url')
+            .then(({ data }) = data);
+
+            return result;
+    };
+```
+
+## Hot Reload
+
+open file src/index.js
+
+```
+    if (module.hot) {
+        module.hot.accept('./App', () => {
+            const NextApp = require('./App').default;
+            ReactDOM.hydrate(
+                <BrowserRouter>
+                    <Router history={history}>
+                    <NextApp />
+                    </Router>
+                </BrowserRouter>,
+                document.getElementById('root')
+            );
+        });
+    }
+```
+<h4 align="center">
+    <a href="https://planets-reactjs.vercel.app/">Live Demo</a>
+</h4>
