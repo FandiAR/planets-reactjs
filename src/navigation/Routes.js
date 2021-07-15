@@ -1,6 +1,6 @@
 import ListPage from 'pages';
 import WishListPage from 'pages/wishlist';
-// import NotFoundPage from 'pages/not-found';
+import NotFoundPage from 'pages/not-found';
 
 export const MainRoutes = [
   {
@@ -12,8 +12,8 @@ export const MainRoutes = [
     path: '/wishlist',
     component: WishListPage,
   },
-  // {
-  //   path: '*',
-  //   component: NotFoundPage,
-  // },
+  {
+    path: '*',
+    component: NotFoundPage,
+  },
 ];
