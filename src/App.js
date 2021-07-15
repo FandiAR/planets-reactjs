@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { createGlobalStyle } from 'styled-components';
+import { Switch, withRouter } from 'react-router-dom';
+import { MainRoutes } from './navigation/Routes';
+import CustomPropsRoute from './navigation/RenderPath';
+import Store from 'utils/store';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: monospace;
+    width: 100vW;
+    margin: auto;
+    background: whitesmoke;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 5px -2px $primary;
+  }
+`;
 
-export default App;
+const App = () => (
+  <Store>
+    <GlobalStyle />
+    <Switch>
+      {MainRoutes.map((route, key) => (
+        <CustomPropsRoute {...route} key={key} />
+      ))}
+    </Switch>
+  </Store>
+);
+
+export default withRouter(App);

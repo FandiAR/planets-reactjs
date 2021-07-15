@@ -1,15 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter, Router } from 'react-router-dom';
+import history from './navigation/BrowserHistory';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+ReactDOM.hydrate(
+  <BrowserRouter>
+    <Router history={history}>
+      <App />
+    </Router>
+  </BrowserRouter>,
   document.getElementById('root')
 );
+
+/**
+ * Hot reload for development
+ */
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    const NextApp = require('./App').default;
+    ReactDOM.hydrate(
+      <BrowserRouter>
+        <Router history={history}>
+          <NextApp />
+        </Router>
+      </BrowserRouter>,
+      document.getElementById('root')
+    );
+  });
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
