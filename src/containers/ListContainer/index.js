@@ -1,13 +1,11 @@
 import {
     useContext, useEffect, useState,
 } from 'react';
-import Layout from 'components/Layout';
-import CardComponent from 'components/Card';
 import { getPlanets } from 'utils/services';
 import { Context } from 'utils/store';
-import Loader from 'components/Loader';
-import Pagination from 'components/Pagination';
-import Snackbar from 'components/Snackbar';
+import {
+    Layout, Loader, Pagination, Snackbar, Card,
+} from 'components';
 
 const ListContainer = () => {
     const [state, dispatch] = useContext(Context);
@@ -50,7 +48,7 @@ const ListContainer = () => {
             <Snackbar message={message} severity={severity} showSnackbar={show} />
             {
                 state?.planets?.length > 0
-                    ? <CardComponent data={state.planets} addWhislist={addWhislist} />
+                    ? <Card data={state.planets} addWhislist={addWhislist} />
                     : <Loader />
             }
             {

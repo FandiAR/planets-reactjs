@@ -1,4 +1,4 @@
-import PageTitle from 'components/PageTitle';
+import { PageTitle } from 'components';
 import NotFoundContainer from 'containers/NotFoundContainer';
 
 const NotFoundPage = ({ history }) => (

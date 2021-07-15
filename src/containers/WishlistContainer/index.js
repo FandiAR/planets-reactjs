@@ -1,10 +1,8 @@
 import { useContext, useState } from 'react';
-import CardComponent from 'components/Card';
-import Layout from 'components/Layout';
 import { Context } from 'utils/store';
-import Pagination from 'components/Pagination';
-import Loader from 'components/Loader';
-import Snackbar from 'components/Snackbar';
+import {
+    Card, Layout, Pagination, Loader,
+} from 'components';
 
 const WhislistContainer = () => {
     const [state] = useContext(Context)
@@ -18,10 +16,9 @@ const WhislistContainer = () => {
 
     return (
         <Layout>
-            <Snackbar message="Whislist Snackbar" severity="error" />
             {
                 state.whislist?.length > 0
-                    ? <CardComponent data={currentWhislist} />
+                    ? <Card data={currentWhislist} />
                     : <Loader />
             }
             {

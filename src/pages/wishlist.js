@@ -1,4 +1,4 @@
-import PageTitle from 'components/PageTitle';
+import { PageTitle } from 'components';
 import WishlistContainer from 'containers/WishlistContainer';
 
 const DetailPage = () => (
